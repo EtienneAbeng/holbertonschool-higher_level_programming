@@ -1,5 +1,3 @@
 #!/usr/bin/python3
-
-for i in range(99):
-    #{ : x} is a convention python for formated in hexadecimal
-    print("{} = 0 x {:x}".format(i, i))
+for i in range(0, 99):
+    print("{} = 0x{:x}".format(i, i))
