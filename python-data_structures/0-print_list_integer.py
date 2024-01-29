@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''
 list of integer - Write a function that prints all integers of a list.
 @str.format : use this format to print the list
