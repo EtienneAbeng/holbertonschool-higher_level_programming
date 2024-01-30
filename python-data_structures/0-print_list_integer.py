@@ -12,6 +12,6 @@ def print_list_integer(my_list=[]):
     i = 0
     # Browse the list with i to print the list
     while i < len(my_list):
-        print("{}".format(my_list[i]))
+        print("{:d}".format(my_list[i]))
         # Each end of iteration to add + 1 at the counter
         i += 1
