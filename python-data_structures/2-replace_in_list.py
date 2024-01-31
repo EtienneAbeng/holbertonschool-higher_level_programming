@@ -12,10 +12,7 @@ the function should not modify anything, and returns the original list
 
 def replace_in_list(my_list, idx, element):
 
-    if idx < 0:
-        return my_list
-
-    elif idx > len(my_list):
+    if idx < 0 and idx > len(my_list) :
         return my_list
 
     else:
