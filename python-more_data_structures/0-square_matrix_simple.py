@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def square_matrix_simple(matrix=[]):
     # Création d'une nouvelle matrice avec les mêmes dimensions que l'origine
     new_matrix = []
