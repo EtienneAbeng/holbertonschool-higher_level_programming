@@ -1,22 +1,11 @@
-#!/usr/bin/python3
-
 def safe_print_list(my_list=[], x=0):
-    # Vérifie si la liste est None
-    if my_list is None:
-        return None
-
-    # Initialise un compteur pour suivre le nombre d'éléments imprimés
-    elements_printed = 0
-
-    # Utilise une boucle for pour parcourir la liste jusqu'à l'indice x
-    for i in range(x):
-        try:
-            # Essaie d'imprimer l'élément à l'indice i
-            print("{:d}".format(my_list[i]), end="")
-            elements_printed += 1  # Incrémente le compteur
-        except (ValueError, TypeError):
-            # Gère les exceptions si l'élément n'est pas un entier
-            break  # Sort de la boucle en cas d'erreur 
-
-    # Ajoute un saut de ligne après l'impression des éléments
-    print()
+    try:
+        count = 0  # Init un compteur pour suivre le nombre d'éléments imprimés
+        for i in range(x):
+            print(my_list[i], end="")  # imprimer l'élément à l'indice i
+            count += 1  # Incrémente le compteur
+        print()  # Ajoute un saut de ligne après l'impression des éléments
+        return count  # Retourne le nombre d'éléments imprimés
+    except IndexError:
+        print()  # Ajoute un saut de ligne en cas d'erreur d'indice
+        return count  #   imprime les nombres  même en cas d'erreur d'indice

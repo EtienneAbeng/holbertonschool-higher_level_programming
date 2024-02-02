@@ -1,11 +1,7 @@
-!/usr/bin/python3
-
+#!/usr/bin/python3
 def safe_print_integer(value):
     try:
-        # Utilise "{:d}".format() pour imprimer l'entier
-        print("{:d}".format(value))
-        # Si l'impression réussit, retourne True
-        return True
-    except (ValueError, TypeError):
-        # En cas d'erreur (ValueError ou TypeError), retourne False
-        return False
+        print("{:d}".format(value))  # Essaye d'imprimer la valeur comme un entier
+        return True  # Retourne True si l'impression réussit
+    except (TypeError, ValueError):
+        return False  # Retourne False en cas d'erreur de type ou de valeur
