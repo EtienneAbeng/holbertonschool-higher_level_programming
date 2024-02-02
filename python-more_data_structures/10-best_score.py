@@ -1,19 +1,12 @@
 def best_score(a_dictionary):
-    # Vérifie si le dictionnaire est None
-    if a_dictionary is None:
+    # Vérifie si le dictionnaire est None ou vide
+    if a_dictionary is None or not a_dictionary:
         return None
 
-    # Initialise les variables pour stocker la best_key et best_value
-    best_key = None
-    best_value = None  # Initialise à une valeur négative infinie
-
-    # Parcourt chaque paire clé-valeur dans le dictionnaire
-    for key, value in a_dictionary.items():
-        # Compare la valeur actuelle avec la meilleure valeur trouvée jusqu'à présent
-        if value > best_value:
-            # Met à jour la meilleure clé et la meilleure valeur
-            best_key = key
-            best_value = value
+    # la fonction max() avec get pour trouver la clé avec la plus grande valeur
+    # Cette méthode prend la clé correspondant à la plus grande valeur
+    best_key = max(a_dictionary, key=a_dictionary.get)
 
     # Retourne la meilleure clé
     return best_key
+
