@@ -6,6 +6,6 @@ def number_keys(a_dictionary):
     if a_dictionary is None:
         return 0
 
-    # Utiliser la fonction len() pour obtenir le nombre de clés dans le dictionnaire
+    # Utiliser len() pour obtenir le nombre de clés dans le dictionnaire
     nb_keys = len(a_dictionary.keys())
     return nb_keys

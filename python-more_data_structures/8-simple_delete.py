@@ -11,5 +11,5 @@ def simple_delete(a_dictionary, key=""):
         # Supprime la clé si elle existe
         del a_dictionary[key]
 
-    # Retourne le dictionnaire après la suppression ou sans modification si la clé n'existait pas
+    # Return dictionary après la suppre ou sans modif si la clé n'existait pas
     return a_dictionary
