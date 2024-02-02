@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def best_score(a_dictionary):
     # Vérifie si le dictionnaire est None ou vide
     if a_dictionary is None or not a_dictionary:
