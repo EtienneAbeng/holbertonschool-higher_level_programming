@@ -12,8 +12,3 @@ def print_sorted_dictionary(a_dictionary):
     for key in sorted_keys:
         value = a_dictionary[key]
         print("{}: {}".format(key, value))
-
-# Exemple d'utilisation
-my_dict = {'language': "Python", 'number': 42, 'track': "High level"}
-print_sorted_dictionary(my_dict)
-
