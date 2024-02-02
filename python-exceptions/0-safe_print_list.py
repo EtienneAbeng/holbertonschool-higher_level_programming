@@ -15,8 +15,8 @@ def safe_print_list(my_list=[], x=0):
             print("{:d}".format(my_list[i]), end="")
             elements_printed += 1  # Incrémente le compteur
         except (ValueError, TypeError):
-            # Gère les exceptions de type ValueError ou TypeError (si l'élément n'est pas un entier)
-            break  # Sort de la boucle en cas d'erreur
+            # Gère les exceptions si l'élément n'est pas un entier
+            break  # Sort de la boucle en cas d'erreur 
 
     # Ajoute un saut de ligne après l'impression des éléments
     print()
