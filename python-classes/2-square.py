@@ -24,8 +24,8 @@ class Square:
         '''
         # Vérifie si la taille est un entier et si elle > ou ==  0
         if not isinstance(size, int):
-            raise TypeError("size must be an integer")  # Lève une exception
-        elif size < 0:
+            raise TypeError("size must be an integer") # Lève une exception
+        if size < 0:
             raise ValueError("size must be >= 0")  # Lève une exception
-       
 
+        self.__size = size
