@@ -18,14 +18,14 @@ La classe a également une méthode area qui calcule et retourne l'aire du carr�
 class Square:
     '''Définit une classe Square pour représenter un carré.'''
 
-    # Méthode d'initialisation pour créer un nouvel objet Square avec une taille spécifiée (par défaut 0)
+    # Méthode d'initialisation pour créer un nouvel objet Square
     def __init__(self, size=0):
         '''Initialise un nouveau carré avec une taille donnée.
 
         Args:
             size (int, optional): La taille du côté du carré (par défaut 0).
         '''
-        # Vérifie si la taille est un entier et si elle est supérieure ou égale à 0
+        # Vérifie si la taille est un entier sinnoin retourne les exceptions
         if not isinstance(size, int):
             raise TypeError("size must be an integer")  # Lève une exception
         elif size < 0:
