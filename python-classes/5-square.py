@@ -7,8 +7,8 @@ Lors de l'initialisation de la classe, la taille du carré est définie.
 Si la taille n'est pas spécifiée, elle est définie par défaut à 0.
 
 La classe a une vérification pour s'assurer que la taille est un entier positif
-lors de l'initialisation. 
-Si la taille n'est pas un entier ou 
+lors de l'initialisation.
+Si la taille n'est pas un entier ou
 si elle est négative, une exception est levée.
 
 La classe a également une méthode area qui calcule et retourne l'aire du carré,
