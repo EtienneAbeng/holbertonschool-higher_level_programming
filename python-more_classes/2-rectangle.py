@@ -45,44 +45,44 @@ class Rectangle:
         else:
             self.__width = value
 
-        @property
-        def height(self):
-            '''
-            Getter pour recupérer la hauteur
-            '''
-            return self.__height  # la hauteur du rectangle
+    @property
+    def height(self):
+        '''
+        Getter pour recupérer la hauteur
+        '''
+        return self.__height  # la hauteur du rectangle
 
-        @height.setter
-        def height(self, height):
-            '''
-            Setter pour définir la hauteur du rectangle
+    @height.setter
+    def height(self, value):
+        '''
+        Setter pour définir la hauteur du rectangle
 
-            Args:
-                value(int): la nouvelle valeur de la hauteur
+        Args:
+            value(int): la nouvelle valeur de la hauteur
 
-            Raise:
-                TypeError: vérifie la hauteur n'est un type entier
-                ValueError: vérifie si la hauteur n'est pas un entier négative
-            '''
-            if not isinstance(value, int):
-                raise TypeError("height must be an integer")
-            elif value < 0:
-                raise ValueError("height must >= 0")
-            else:
-                self.__height = value
+        Raise:
+            TypeError: vérifie la hauteur n'est un type entier
+            ValueError: vérifie si la hauteur n'est pas un entier négative
+        '''
+        if not isinstance(value, int):
+            raise TypeError("height must be an integer")
+        elif value < 0:
+            raise ValueError("height must >= 0")
+        else:
+            self.__height = value
 
-        def area(self):
-            '''
-            Calcule et return l'aire du rectangle en multipliant width * height
-            '''
-            return self.__width * self.__height  # retrourne l'air du carré
+    def area(self):
+        '''
+        Calcule et return l'aire du rectangle en multipliant width * height
+        '''
+        return self.__width * self.__height  # retrourne l'air du carré
 
-        def perimeter(self):
-            '''
-            Calcule et retourne le périmètre du rectangle en addtionnant
-            height + width et ensuite multipliant l'ensemble par 2
-            '''
-            if self.width == 0 or self.height == 0:
-                return 0
-            else:
-                return (sel.height + self.width) * 2  # return le périmetre
+    def perimeter(self):
+        '''
+        Calcule et retourne le périmètre du rectangle en addtionnant
+        height + width et ensuite multipliant l'ensemble par 2
+        '''
+        if self.width == 0 or self.height == 0:
+            return 0
+        else:
+            return (self.__height + self.__width) * 2  # return le périmetre
