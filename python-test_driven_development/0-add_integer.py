@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 def matrix_divided(matrix, div):
     """
     Divise tous les éléments d'une matrice par un diviseur donné.
@@ -40,3 +38,9 @@ def matrix_divided(matrix, div):
     # Divise chaque élément de la matrice par div et arrondit à 2 décimales
     return [[round(num / div, 2) for num in row] for row in matrix]
 
+# Exemple d'utilisation :
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
+print(matrix_divided(matrix, 3))
