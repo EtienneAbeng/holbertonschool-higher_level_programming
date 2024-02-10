@@ -31,7 +31,7 @@ class Rectangle:
         '''
         Setter pour définir la hauteur du rectangle
 
-        Agrs:
+        Args:
             value(int): la nouvelle valueur de la largeur
 
         Raise:
@@ -86,64 +86,25 @@ class Rectangle:
             return 0
         else:
             return (self.__height + self.__width) * 2  # return le périmetre
-#!/usr/bin/python3
-"""Définit un rectangle vide."""
-
-
-class Rectangle:
-    """Représente un rectangle vide."""
-
-    def __init__(self, width=0, height=0):
-        """Initialise le rectangle avec une largeur et une hauteur."""
-        self.height = height
-        self.width = width
-
-    @property
-    def width(self):
-        """Getter pour récupérer la largeur du rectangle."""
-        return self.__width
-
-    @width.setter
-    def width(self, value):
-        """Setter pour définir la largeur du rectangle."""
-        if type(value) is not int:
-            raise TypeError("width must be an integer")
-        if value < 0:
-            raise ValueError("width must be >= 0")
-        self.__width = value
-
-    @property
-    def height(self):
-        """Getter pour récupérer la hauteur du rectangle."""
-        return self.__height
-
-    @height.setter
-    def height(self, value):
-        """Setter pour définir la hauteur du rectangle."""
-        if type(value) is not int:
-            raise TypeError("height must be an integer")
-        if value < 0:
-            raise ValueError("height must be >= 0")
-        self.__height = value
-
-    def area(self):
-        """Calcule et retourne l'aire du rectangle."""
-        return self.__width * self.__height
-
-    def perimeter(self):
-        """Calcule et retourne le périmètre du rectangle."""
-        if self.__width == 0 or self.__height == 0:
-            return 0
-        return 2 * (self.__width + self.__height)
 
     def __str__(self):
         """Retourne une représentation sous forme de chaîne de caractères du rectangle."""
         if self.width == 0 or self.height == 0:
             return ""  # Retourne une chaîne vide si le rectangle est vide
 
+        result = ''
         for i in range(self.height):  # Boucle sur les lignes du rectangle
             for j in range(self.width):  # Boucle sur les colonnes du rectangle
-                print("#", end='')  # Imprime le caractère '#' sans sauter de ligne
+                result += '#'  # Ajoute le caractère '#' à la chaîne résultante
             if i != self.height - 1:  # Si ce n'est pas la dernière ligne
-                print()  # Passe à la ligne suivante
-        return ''  # Retourne une chaîne vide après l'impression du rectangle
+                result += '\n'  # Ajoute un saut de ligne à la chaîne résultante
+        return result  # Retourne la chaîne résultante
+
+    def __repr__(self):
+        """Retourne une representation sous forme de chaine de caractere"""
+        return f"Rectangle({self.__width}, {self.__height})"
+
+    def __del__(self):
+        """Retourne une representation sous forme de chaine de caractere"""
+        print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1  # Décremente 1 à 1 à chaque suppres
