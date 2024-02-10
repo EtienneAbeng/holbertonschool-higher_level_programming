@@ -13,7 +13,7 @@ class Rectangle:
     '''
 
     number_of_instances = 0  # attribut classe pour suivre le nombre instance
-
+    print_symbol = "#"
     def __init__(self, width=0, height=0):
         '''
         initialise un rectangle avec une largeur et une hauteur
@@ -135,7 +135,7 @@ class Rectangle:
 
         for i in range(self.height):  # Boucle sur les lignes du rectangle
             for j in range(self.width):  # Boucle sur les colonnes du rectangle
-                print("#", end='')  # Imprime le caractère '#' sans sauter de ligne
+                print(self.print_symbol, end='')  # Imprime le caractère '#' sans sauter de ligne
             if i != self.height - 1:  # Si ce n'est pas la dernière ligne
                 print()  # Passe à la ligne suivante
         return ''  # Retourne une chaîne vide après l'impression du rectangle
