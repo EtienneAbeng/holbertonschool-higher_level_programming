@@ -12,12 +12,15 @@ class Rectangle:
     definit une classe rectangle pour representer le rectangle
     '''
 
+    number_of_instances = 0  # Attribut de classe pour suivre le nombre d'instances de Rectangle
+
     def __init__(self, width=0, height=0):
         '''
         initialise un rectangle avec une largeur et une hauteur
         '''
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1  # Incrémente le nombre d'instances lors de l'initialisation
 
     @property
     def width(self):
@@ -103,10 +106,10 @@ class Rectangle:
     def __repr__(self):
         """Retourne une représentation en chaîne du rectangle 
         pour recréer une nouvelle instance avec eval()."""
-    return "Rectangle({}, {})".format(self.width, self.height)
-
+        return "Rectangle({}, {})".format(self.width, self.height)
 
     def __del__(self):
-        """Retourne une representation sous forme de chaine de caractere"""
+        """Méthode de destruction d'objet, affiche un message et décrémente le nombre d'instances."""
         print("Bye rectangle...")
-        Rectangle.number_of_instances -= 1  # Décremente 1 à 1 à chaque suppres
+        Rectangle.number_of_instances -= 1  # Décrémente le nombre d'instances
+
