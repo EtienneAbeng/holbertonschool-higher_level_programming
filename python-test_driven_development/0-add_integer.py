@@ -1,49 +1,32 @@
 #!/usr/bin/python3
+""" Programme de calcul de somme d'entiers """
 
-
-def matrix_divided(matrix, div):
-    """
-    Divise tous les éléments d'une matrice par un diviseur donné.
+def add_integer(a, b=98):
+    """ Ajoute deux entiers ou flottants.
 
     Args:
-        matrix (list de listes): La matrice à diviser.
-        div (int ou float): Le diviseur.
-
-    Returns:
-        list de listes: Une nouvelle matrice avec les éléments divisés par le diviseur.
+        a (int ou float): Le premier nombre. Par défaut, 98.
+        b (int ou float): Le deuxième nombre. Par défaut, 98.
 
     Raises:
-        TypeError: Si la matrice n'est pas une liste de listes d'entiers/flottants
-                   ou si div n'est pas un nombre.
-        ZeroDivisionError: Si div est égal à 0.
+        TypeError: Si a ou b n'est pas un entier ou un flottant.
 
+    Returns:
+        int: La somme des deux nombres convertie en entier.
     """
-    # Vérifie si la matrice est une liste de listes d'entiers/flottants
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
-        raise TypeError("matrix doit être une matrice (liste de listes) d'entiers/flottants")
 
-    # Vérifie si tous les éléments de la matrice sont des entiers/flottants
-    if not all(isinstance(num, (int, float)) for row in matrix for num in row):
-        raise TypeError("matrix doit être une matrice (liste de listes) d'entiers/flottants")
+    # Message d'erreur commun
+    message_erreur = " doit être un entier"
 
-    # Vérifie si chaque ligne de la matrice a la même taille
-    if not all(len(row) == len(matrix[0]) for row in matrix):
-        raise TypeError("Chaque ligne de la matrice doit avoir la même taille")
+    # Vérifie si a est un entier ou un flottant
+    if type(a) not in [int, float]:
+        raise TypeError("a" + message_erreur)
+    
+    # Vérifie si b est un entier ou un flottant
+    if type(b) not in [int, float]:
+        raise TypeError("b" + message_erreur)
 
-    # Vérifie si div est un nombre
-    if not isinstance(div, (int, float)):
-        raise TypeError("div doit être un nombre")
+    # Convertit a et b en entiers puis retourne leur somme
+    va, vb = int(a), int(b)
+    return va + vb
 
-    # Vérifie si div est différent de zéro
-    if div == 0:
-        raise ZeroDivisionError("division par zéro")
-
-    # Divise chaque élément de la matrice par div et arrondit à 2 décimales
-    return [[round(num / div, 2) for num in row] for row in matrix]
-
-# Exemple d'utilisation :
-matrix = [
-    [1, 2, 3],
-    [4, 5, 6]
-]
-print(matrix_divided(matrix, 3))
