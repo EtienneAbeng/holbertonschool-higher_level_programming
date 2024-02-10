@@ -6,67 +6,42 @@ La class a 2 attributs privée __height et __weight du rectangle
 Les méthodes de propriété pour récupérer sont getter et setter
 '''
 
+#!/usr/bin/python3
+"""Définit un rectangle vide."""
+
 
 class Rectangle:
-    '''
-    definit une classe rectangle pour representer le rectangle
-    '''
+    """Représente un rectangle vide."""
 
     def __init__(self, width=0, height=0):
-        '''
-        initialise un rectangle avec une largeur et une hauteur
-        '''
-        self.width = width
-        self.height = height
+        """Initialise le rectangle avec une largeur et une hauteur."""
+        self.height = height  # Initialisation de la hauteur
+        self.width = width  # Initialisation de la largeur
 
     @property
     def width(self):
-        '''
-        Getter pour recuperer la largeur du rectangle
-        '''
-        return self.__width  # retourne la largeur du rectangle
+        """Getter pour récupérer la largeur du rectangle."""
+        return self.__width  # Retourne la largeur du rectangle
 
     @width.setter
     def width(self, value):
-        '''
-        Setter pour définir la hauteur du rectangle
-
-        Agrs:
-            value(int): la nouvelle valueur de la largeur
-
-        Raise:
-            TypeError: si la largeur n'est pas un entier
-            ValueError: si la largeur est négative
-        '''
+        """Setter pour définir la largeur du rectangle."""
         if not isinstance(value, int):
-            raise TypeError("width must be an integer")  # verifie si un entier
-        elif value < 0:
-            raise ValueError("width must >= 0")  # verifie largeur est positive
-        else:
-            self.__width = value
+            raise TypeError("width must be an integer")  # Vérifie si c'est un entier
+        if value < 0:
+            raise ValueError("width must be >= 0")  # Vérifie si c'est positif
+        self.__width = value  # Définit la largeur du rectangle
 
-        @property
-        def height(self):
-            '''
-            Getter pour recupérer la hauteur
-            '''
-            return self.__height  # la hauteur du rectangle
+    @property
+    def height(self):
+        """Getter pour récupérer la hauteur du rectangle."""
+        return self.__height  # Retourne la hauteur du rectangle
 
-        @height.setter
-        def height(self, height):
-            '''
-            Setter pour définir la hauteur du rectangle
-
-            Args:
-                value(int): la nouvelle valeur de la hauteur
-
-            Raise:
-                TypeError: vérifie la hauteur n'est un type entier
-                ValueError: vérifie si la hauteur n'est pas un entier négative
-            '''
-            if not isinstance(value, int):
-                raise TypeError("height must be an integer")
-            elif value < 0:
-                raise ValueError("height must >= 0")
-            else:
-                self.__height = value
+    @height.setter
+    def height(self, value):
+        """Setter pour définir la hauteur du rectangle."""
+        if not isinstance(value, int):
+            raise TypeError("height must be an integer")  # Vérifie si c'est un entier
+        if value < 0:
+            raise ValueError("height must be >= 0")  # Vérifie si c'est positif
+        self.__height = value  # Définit la hauteur du rectangle
