@@ -1,4 +1,4 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
 
 '''
 Le script est une classe Square qui représente un carré
