@@ -101,8 +101,10 @@ class Rectangle:
         return result  # Retourne la chaîne résultante
 
     def __repr__(self):
-        """Retourne une representation sous forme de chaine de caractere"""
-        return f"Rectangle({self.__width}, {self.__height})"
+        """Retourne une représentation en chaîne du rectangle 
+        pour recréer une nouvelle instance avec eval()."""
+    return "Rectangle({}, {})".format(self.width, self.height)
+
 
     def __del__(self):
         """Retourne une representation sous forme de chaine de caractere"""
