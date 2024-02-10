@@ -1,4 +1,4 @@
-#!/usr/bin/python#3
+#!/usr/bin/python3
 
 '''
 Le script definit une classe rectangle pour representer ce rectangle
