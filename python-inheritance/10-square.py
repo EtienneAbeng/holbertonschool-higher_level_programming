@@ -85,4 +85,4 @@ class Square(Rectangle):
         Returns:
             str: Une représentation d'une chaîne de caractères du carré.
         """
-        return "[Square] {}/{}".format(self.__size, self.__size)
+        return "[Rectangle] {}/{}".format(self.__size, self.__size)

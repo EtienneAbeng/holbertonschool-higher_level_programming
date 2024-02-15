@@ -8,4 +8,4 @@
 def lookup(obj):
     """Définition de la class lookup"""
 
-    return dir(list)
+    return dir(obj)
