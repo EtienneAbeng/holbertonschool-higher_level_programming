@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Ce script démontre l'utilisation d'une classe BaseGeometry avec une méthode area()
-qui lève une exception lorsqu'elle est appelée sans être implémentée.
+Ce script démontre l'utilisation d'une classe BaseGeometry avec une méthode
+area()qui lève une exception lorsqu'elle est appelée sans être implémentée.
 """
 
 
@@ -21,7 +21,7 @@ class BaseGeometry:
         Raises:
             Exception: La méthode ne se trouve pas dans la base de class
         """
-        # Lève une exception car le calcul de l'aire 
+        # Lève une exception car le calcul de l'aire
         # n'est pas implémenté dans la classe de base
         raise Exception("area() is not implemented")
 
@@ -34,8 +34,8 @@ class BaseGeometry:
 
             ValueError: Verifie si la valeur reçu est un entier postive
         """
-        # La fonction isinstance permet de vérifier le type d'objet d'une variable. 
-        # Prend en argument la variable à étudier et le type d'objet à vérifier. 
+        # La fonction isinstance vérifie le type d'objet d'une variable.
+        # Prend en argument la variable à étudier et le type d'objet à vérif
         if not isinstance(value, int):
             raise TypeError("{} must be an integer".format(name))
         if value < 0:

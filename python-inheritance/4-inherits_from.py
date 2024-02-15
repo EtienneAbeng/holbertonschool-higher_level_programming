@@ -17,8 +17,8 @@ def inherits_from(obj, a_class):
         True si l'objet est une instance d'une classe qui a hérité
         sinon rtourne False
     """
-    
-    #Vérifie si le type de l'objet est une sous classe de la classe spécifié
+
+    # Vérifie si le type de l'objet est une sous classe de la classe spécifié
     if issubclass(type(obj), a_class):  # Bien rajouter type, important
 
         return True

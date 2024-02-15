@@ -1,90 +1,88 @@
-#!/usr/bin/python3
-"""
-Ce script démontre l'utilisation d'une classe BaseGeometry avec une méthode area()
-afin de calculer l'air d'un rectangle
-"""
-
-
 class BaseGeometry:
     """
-    Une base class qui représente une géometrie.
-
-    Methods:
-    area(self): Calcule l'aire de la géométrie
-        léve une exception car elle n'est pas impléentée dans la class de base
+    Une base class qui représente une géométrie.
     """
 
     def area(self):
         """
-        Calcule l'aire d'un rectangle
-
-        Raises:
-            Exception: La méthode ne se trouve pas dans la base de class
+        Calcule l'aire de la géométrie
         """
-        # Lève une exception car le calcul de l'aire 
-        # n'est pas implémenté dans la classe de base
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
         """
-        Valide si la valeur passé est bien en entier
+        Valide si la valeur passée est bien un entier positif
 
         Args:
-            TypeError: Verifie si la valeur reçu est le bon type
+            name (str): Le nom de la valeur à valider.
+            value (int): La valeur à valider.
 
-            ValueError: Verifie si la valeur reçu est un entier postive
+        Raises:
+            TypeError: Si la valeur n'est pas un entier.
+            ValueError: Si la valeur n'est pas un entier positif.
         """
-        # La fonction isinstance permet de vérifier le type d'objet d'une variable. 
-        # Prend en argument la variable à étudier et le type d'objet à vérifier. 
         if not isinstance(value, int):
             raise TypeError("{} must be an integer".format(name))
-        if value < 0:
-            raise ValueError("{} must be greater than 0".format(name))
+        if value <= 0:
+            raise ValueError("{} must be a positive integer".format(name))
+
 
 class Rectangle(BaseGeometry):
-    """La class rectangle hérite de tout les attributs et class 
-        de BaseGeometry
+    """
+    La classe Rectangle représente un rectangle.
     """
 
     def __init__(self, width, height):
+        """
+        Initialise un rectangle avec une largeur et une hauteur spécifiées.
 
+        Args:
+            width (int): La largeur du rectangle.
+            height (int): La hauteur du rectangle.
+        """
+        super().__init__()
         self.__width = width
         self.__height = height
-        self.integer_validator = ("width", width)
-        self.integer_validator = ("height", height)
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
 
     def __str__(self):
         """
-        Returns :
-            str : Une représentation d'une chaîne caractères du rectangle
+        Retourne une chaîne de caractères du rectangle.
+
+        Returns:
+            str: Une représentation d'une chaîne de caractères du rectangle.
         """
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
 
     def area(self):
         """
-        Calcule et retourne la valeur de l'aire d'un rectangle,
-        en multipliant largeur * hauteur
+        Calcule et retourne la valeur de l'aire du rectangle.
         """
         return self.__width * self.__height
 
-    class Square(Rectangle):
-        """
-        Création d'un carré héritant de la classe et des attributs de Rectangle
-        """
+
+class Square(Rectangle):
+    """
+    La classe Square représente un carré, héritant de la classe Rectangle.
+    """
 
     def __init__(self, size):
         """
-        Création d'une méthode pour initialiser la taille d'un carré
+        Initialise un carré avec une taille spécifiée.
+
+        Args:
+            size (int): La taille du carré.
         """
-        super().__init__(size, size)
-        self.size = size
+        super().__init__(size, size)  # Appel méthode __init__() classe parente
+        self.__size = size
         self.integer_validator("size", size)
 
     def __str__(self):
         """
-        Returns une chaîne caractére représentant un rectangle.
+        Retourne une représentation d'une chaîne de caractères du carré.
 
         Returns:
-            str: Une chaîne de caractére representant un carré.
+            str: Une représentation d'une chaîne de caractères du carré.
         """
         return "[Square] {}/{}".format(self.__size, self.__size)
