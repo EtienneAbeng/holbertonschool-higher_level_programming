@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Ce script démontre l'utilisation d'une classe BaseGeometry avec une méthode area()
-qui lève une exception lorsqu'elle est appelée sans être implémentée.
+Ce script démontre l'utilisation d'une classe BaseGeometry avec une méthode
+area()qui lève une exception lorsqu'elle est appelée sans être implémentée.
 """
 
 
