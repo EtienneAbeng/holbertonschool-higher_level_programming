@@ -16,6 +16,4 @@ def from_json_string(my_str):
     Returns:
         object: L'objet Python résultant de la désérialisation.
     """
-    data_struct = json.loads(my_str)
-
-    return data_struct
+    return json.loads(my_str)
