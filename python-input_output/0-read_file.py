@@ -14,4 +14,4 @@ def read_file(filename=""):
     with open(filename, "r", encoding="utf-8") as f:
         # Lit le contenu se trouvant dans le fichier
         text = f.read()
-        print(text)  # Affiche le contenu du fichier
+        print(text, end="")  # Affiche le contenu du fichier
