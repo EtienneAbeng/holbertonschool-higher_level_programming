@@ -1,19 +1,10 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 """
- Le script écrit une foction qui retourne un objet (Python data structure)
- qui represente un Jsonstring
+    Function that convert JSON to objct
 """
 import json
 
 
 def from_json_string(my_str):
-    """
-    Convertit une chaîne JSON en un objet Python.
-
-    Args:
-        my_str (str): La chaîne JSON à convertir.
-
-    Returns:
-        object: L'objet Python résultant de la désérialisation.
-    """
+    """my_str:  the string to be converted"""
     return json.loads(my_str)
