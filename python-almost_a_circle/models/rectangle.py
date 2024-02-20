@@ -33,7 +33,14 @@ class Rectangle(Base):
     @width.setter  # définir un mutateur permet de modifier la largeur
     def width(self, value):
         """Mutateur pour la largeur"""
-        self.__width = value
+        if value is not isinstance(value, int):
+            raise TypeError(width must be an integer)
+
+        elif value <= 0:
+            raise ValueError(width must > 0)
+
+        else:
+            self.__width = value
 
     @property  # définir un accesseur (getter) pour un attribut de class
     def height(self):
@@ -41,9 +48,16 @@ class Rectangle(Base):
         return self.height
 
     @height.setter  # définir un mutateur permettant de modifier la hauteur
-    def height(self, value):
+    def height(self, x):
         """Mutateur pour la hauteur"""
-        self.__width = value
+        if x is not isinstance(x, int):
+            raise TypeError("height must be an integer")
+
+        elif x <= 0:
+            raise ValueError("height must > 0")
+
+        else:
+            self.__width = value
 
     @property  # définir un acesseur (getter) pour un attribut class
     def x(self):
@@ -51,9 +65,12 @@ class Rectangle(Base):
         return self.__x
 
     @x.setter  # définir un mutateur permet de modifier la coordonnée x
-    def x(self, value_x):
+    def x(self, x):
         """Mutateur de coordonnée x"""
-        self.__x = value_x
+        if x is not isinstance:
+            raise ValueError("x must be > 0")
+        else:
+            self.__x = x
 
     @property  # définier un mutateur (getter) pour un attribut class
     def y(self):
@@ -61,6 +78,9 @@ class Rectangle(Base):
         return (self)
 
     @y.setter  # définir un mutateur permet de modifier la coordonnée y
-    def y(self, value_y):
+    def y(self, y):
         """Mutateur"""
-        self.__y = value_y
+        if y <= 0:
+            raise ValueError("x must be >= 0")
+        else:
+            self.__y = y
