@@ -33,7 +33,7 @@ class Rectangle(Base):
     @width.setter  # définir un mutateur permet de modifier la largeur
     def width(self, value):
         """Mutateur pour la largeur"""
-        if value is not isinstance(value, int):
+        if is not isinstance(value, int):
             raise TypeError("width must be an integer")
 
         elif value <= 0:
@@ -50,7 +50,7 @@ class Rectangle(Base):
     @height.setter  # définir un mutateur permettant de modifier la hauteur
     def height(self, value):
         """Mutateur pour la hauteur"""
-        if value is not isinstance(value, int):
+        if is not isinstance(value, int):
             raise TypeError("height must be an integer")
 
         elif value <= 0:
@@ -67,7 +67,7 @@ class Rectangle(Base):
     @x.setter  # définir un mutateur permet de modifier la coordonnée x
     def x(self, value):
         """Mutateur de coordonnée x"""
-        if value is not isinstance(value, int):
+        if is not isinstance(value, int):
             raise TypeError("x must be an integer")
 
         elif value <= 0:
@@ -83,7 +83,7 @@ class Rectangle(Base):
     @y.setter  # définir un mutateur permet de modifier la coordonnée y
     def y(self, value):
         """Mutateur"""
-        if value is not isinstance(value, int):
+        if is not isinstance(value, int):
             raise TypeError("y must be an integer")
 
         elif value <= 0:
