@@ -34,10 +34,10 @@ class Rectangle(Base):
     def width(self, value):
         """Mutateur pour la largeur"""
         if value is not isinstance(value, int):
-            raise TypeError(width must be an integer)
+            raise TypeError("width must be an integer")
 
         elif value <= 0:
-            raise ValueError(width must > 0)
+            raise ValueError("width must > 0")
 
         else:
             self.__width = value
@@ -45,19 +45,19 @@ class Rectangle(Base):
     @property  # définir un accesseur (getter) pour un attribut de class
     def height(self):
         """Accesseur pour la hauteur"""
-        return self.height
+        return self.__height
 
     @height.setter  # définir un mutateur permettant de modifier la hauteur
-    def height(self, x):
+    def height(self, value):
         """Mutateur pour la hauteur"""
-        if x is not isinstance(x, int):
+        if value is not isinstance(value, int):
             raise TypeError("height must be an integer")
 
-        elif x <= 0:
+        elif value <= 0:
             raise ValueError("height must > 0")
 
         else:
-            self.__width = value
+            self.__height = value
 
     @property  # définir un acesseur (getter) pour un attribut class
     def x(self):
@@ -65,22 +65,29 @@ class Rectangle(Base):
         return self.__x
 
     @x.setter  # définir un mutateur permet de modifier la coordonnée x
-    def x(self, x):
+    def x(self, value):
         """Mutateur de coordonnée x"""
-        if x is not isinstance:
+        if value is not isinstance(value, int):
+            raise TypeError("x must be an integer")
+
+        elif value <= 0:
             raise ValueError("x must be > 0")
         else:
-            self.__x = x
+            self.__x = value
 
     @property  # définier un mutateur (getter) pour un attribut class
     def y(self):
         """Acceseur de coordonneé y"""
-        return (self)
+        return self.__y
 
     @y.setter  # définir un mutateur permet de modifier la coordonnée y
-    def y(self, y):
+    def y(self, value):
         """Mutateur"""
-        if y <= 0:
-            raise ValueError("x must be >= 0")
+        if value is not isinstance(value, int):
+            raise TypeError("y must be an integer")
+
+        elif value <= 0:
+            raise ValueError("y must be >= 0")
+
         else:
-            self.__y = y
+            self.__y = value
