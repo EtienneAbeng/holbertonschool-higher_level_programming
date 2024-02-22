@@ -20,10 +20,10 @@ class Rectangle(Base):
         # Appel le constructeur de la class parent(base) avec super
         super().__init__(id)
         # Initialise les attributs de rectangle
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
     @property  # définir un accesseur (getter) pour un attribut de class
     def width(self):
@@ -33,7 +33,7 @@ class Rectangle(Base):
     @width.setter  # définir un mutateur permet de modifier la largeur
     def width(self, value):
         """Mutateur pour la largeur"""
-        if is not isinstance(value, int):
+        if not isinstance(value, int):
             raise TypeError("width must be an integer")
 
         elif value <= 0:
@@ -50,7 +50,7 @@ class Rectangle(Base):
     @height.setter  # définir un mutateur permettant de modifier la hauteur
     def height(self, value):
         """Mutateur pour la hauteur"""
-        if is not isinstance(value, int):
+        if not isinstance(value, int):
             raise TypeError("height must be an integer")
 
         elif value <= 0:
@@ -67,11 +67,11 @@ class Rectangle(Base):
     @x.setter  # définir un mutateur permet de modifier la coordonnée x
     def x(self, value):
         """Mutateur de coordonnée x"""
-        if is not isinstance(value, int):
+        if not isinstance(value, int):
             raise TypeError("x must be an integer")
 
-        elif value <= 0:
-            raise ValueError("x must be > 0")
+        elif value < 0:
+            raise ValueError("x must be >= 0")
         else:
             self.__x = value
 
@@ -83,11 +83,51 @@ class Rectangle(Base):
     @y.setter  # définir un mutateur permet de modifier la coordonnée y
     def y(self, value):
         """Mutateur"""
-        if is not isinstance(value, int):
+        if not isinstance(value, int):
             raise TypeError("y must be an integer")
 
-        elif value <= 0:
+        elif value < 0:
             raise ValueError("y must be >= 0")
 
         else:
             self.__y = value
+
+    def area(self):
+        """Calcule l'air d'un rectangle"""
+        return self.width * self.height  # Largeur * hauteur
+
+    def display(self):
+        """
+        Affiche le Rectangle en stdout avec  '#' en prenant compte de x et y
+        """
+        for _ in range(self.y):  # Se déplace sur abscisse y
+            print()
+        for _ in range(self.height):  # Se place sur l hauteur
+            # Imprime en 1 des espaces vide puis une concatenation rajoute des
+            print(" " * self.x + "#" * self.width)
+
+    def __str__(self):
+        """
+        Renvoie une chaîne de caractères représentant l'instance Rectangle
+
+        Le format sera : [Rectangle] (<id>) <x>/<y> - <width>/<height>
+        """
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)
+
+    def update(self, *args, **kwargs):
+        """
+        Assigne chaque argument à un attribut
+
+        Args:
+            *args: Arguments à assigner aux attributs, dans l'ordre suivant
+               1. id, 2. width, 3. height, 4. x, 5. y
+        """
+
+        if args and len(args) > 0:
+            attrs = ["id", "width", "height", "x", "y"]
+            for i, arg in enumerate(args[:5]):
+                setattr(self, attrs[i], arg)
+        elif kwargs and len(kwargs) > 0:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+
