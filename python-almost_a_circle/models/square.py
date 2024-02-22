@@ -1,29 +1,16 @@
 #!/usr/bin/python3
+
 from models.rectangle import Rectangle
 
-
 class Square(Rectangle):
-    """Classe Square hérite de Rectangle."""
+    """Class Square hérite de Rectangle."""
 
     def __init__(self, size, x=0, y=0, id=None):
-        """
-        Initialise une instance de carré.
-
-        Args:
-            size (int): Taille du carré.
-            x (int): Coordonnée x du coin supérieur gauche du carré.
-            y (int): Coordonnée y du coin supérieur gauche du carré.
-            id (int): Identifiant du carré.
-        """
-        super().__init__(size, size, x, y, id)
+        """Initialise une instance de carré."""
+        super().__init__(size, size, x, y, id)  # Appel du constructeur de la classe Rectangle avec la même taille pour width et height
 
     def __str__(self):
-        """
-        Renvoie une représentation sous forme de chaîne de caractères du carré.
-
-        Returns:
-            str: Une représentation sous forme de chaîne de caractères du carré.
-        """
+        """Renvoie une représentation sous forme de chaîne de caractères du carré."""
         return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
 
     @property
@@ -45,10 +32,19 @@ class Square(Rectangle):
             *args: Arguments sans mot-clé.
             **kwargs: Arguments avec mot-clé.
         """
-        if args:
-            attrs = ["id", "size", "x", "y"]  # Liste d'attributs aux arguments sans mot-clé
-            for i, arg in enumerate(args):  # Itérer sur les arguments sans mot-clé
-                setattr(self, attrs[i], arg)  # Définir dynamiquement chaque attribut du carré
-        else:  # Si aucun argument sans mot-clé n'est fourni
-            for key, value in kwargs.items():  # Itérer sur les arguments avec mot-clé
-                setattr(self, key, value)  # Définir dynamiquement en utilisant les arguments avec mot-clé
+        if args:  # Si des arguments sont fournis sous forme de tuple
+            attrs = ["id", "size", "x", "y"]  # Liste des attributs dans l'ordre attendu
+            for i, arg in enumerate(args):  # Parcours des arguments
+                setattr(self, attrs[i], arg)  # Affectation des valeurs aux attributs correspondants
+        else:
+            for key, value in kwargs.items():  # Parcours des arguments clé-valeur
+                setattr(self, key, value)  # Affectation des valeurs aux attributs correspondants
+
+    def to_dictionary(self):
+        """
+        Renvoie une représentation sous forme de dictionnaire du carré.
+
+        Returns:
+            dict: Une représentation sous forme de dictionnaire du carré.
+        """
+        return {'id': self.id, 'size': self.size, 'x': self.x, 'y': self.y}  # Affiche dictionnaire du carré

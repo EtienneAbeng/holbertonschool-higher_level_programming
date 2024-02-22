@@ -25,3 +25,5 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects  # incrementation et assignation
+
+def to_json_string(list_dictionaries):
