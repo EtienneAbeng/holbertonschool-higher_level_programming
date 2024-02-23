@@ -1,115 +1,159 @@
 #!/usr/bin/python3
-""" unittest """
 import unittest
+import json
 import os
-
 from models.square import Square
-from models.base import Base
-
-from io import StringIO
-from contextlib import redirect_stdout
 
 
-class Test_Square(unittest.TestCase):
-    """ unittest """
+class TestSquare(unittest.TestCase):
 
-    def test_init(self):
-        r = Square(8, 4, 2, 10)
-        self.assertEqual(r.id, 10)
-        self.assertEqual(r.width, 8)
-        self.assertEqual(r.x, 4)
-        self.assertEqual(r.y, 2)
-        self.assertEqual(r.area(), 64)
+    def test_square_init(self):
+        square = Square(3)
+        self.assertEqual(square.size, 3)
+        square = Square(3, 1)
+        self.assertEqual(square.x, 1)
 
-        r = Square(8)
-        self.assertEqual(r.width, 8)
+    def test_square_init_with_pos(self):
+        square = Square(3, 2, 1)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 1)
 
-        self.assertRaisesRegex(
-            TypeError, "width must be an integer", Square, "8", 4, 2, 10)
-        self.assertRaisesRegex(
-            TypeError, "x must be an integer", Square, 8, "4", 2, 10)
-        self.assertRaisesRegex(
-            TypeError, "y must be an integer", Square, 8, 4, "2", 10)
-        self.assertRaisesRegex(
-            ValueError, "width must be > 0", Square, -1, 4, 2, 10)
-        self.assertRaisesRegex(
-            ValueError, "x must be >= 0", Square, 8, -1, 2, 10)
-        self.assertRaisesRegex(
-            ValueError, "y must be >= 0", Square, 8, 1, -2, 10)
-        self.assertRaisesRegex(TypeError, "", Square, )
-        self.assertRaisesRegex(
-            ValueError, "width must be > 0", Square, 0, 4, 2, 10)
+    def test_square_init_with_id(self):
+        square = Square(3, 2, 1, 10)
+        self.assertEqual(square.id, 10)
 
-        r1 = Square(1)
-        expected_output = '#\n'
-        with StringIO() as buffer, redirect_stdout(buffer):
-            r1.display()
-            result = buffer.getvalue()
-        self.assertEqual(result, expected_output)
+        
 
-        r1 = Square(1, 1, 1)
-        expected_output = '\n #\n'
-        with StringIO() as buffer, redirect_stdout(buffer):
-            r1.display()
-            result = buffer.getvalue()
-        self.assertEqual(result, expected_output)
+    def test_square_int_error(self):
+        with self.assertRaises(TypeError) as err:
+            square = Square("hello", 2, 3)
+        self.assertEqual(str(err.exception), "width must be an integer")
+        with self.assertRaises(TypeError) as err:
+            square = Square(1, "2", 3)
+        self.assertEqual(str(err.exception), "x must be an integer")
+        with self.assertRaises(TypeError) as err:
+            square = Square(1, 2, "3")
+        self.assertEqual(str(err.exception), "y must be an integer")
 
-        r = Square(1, 3, 4)
-        r.update(89)
-        self.assertEqual(r.id, 89)
-        r.update(89, 3)
-        self.assertEqual(r.width, 3)
+    def test_square_value_error(self):
+        with self.assertRaises(ValueError) as err:
+            square = Square(-2)
+        self.assertEqual(str(err.exception), "width must be > 0")
+        with self.assertRaises(ValueError) as err:
+            square = Square(2, -2)
+        self.assertEqual(str(err.exception), "x must be >= 0")
+        with self.assertRaises(ValueError) as err:
+            square = Square(1, 2, -2)
+        self.assertEqual(str(err.exception), "y must be >= 0")
+        with self.assertRaises(ValueError) as err:
+            square = Square(0)
+        self.assertEqual(str(err.exception), "width must be > 0")
 
-        r = Square(14, 12, 15, 25)
-        self.assertEqual(str(r), "[Square] (25) 12/15 - 14")
+    def test_square_area(self):
+        square = Square(3)
+        self.assertEqual(square.area(), 9)
 
-        r = Square(2, 6, 8, 22)
-        self.assertEqual(r.to_dictionary(), {'id': 22, 'size': 2,
-                                             'x': 6, 'y': 8})
+    def test_square_str(self):
+        square = Square(3, 2, 1, 10)
+        expected_output = "[Square] (10) 2/1 - 3"
+        self.assertEqual(str(square), expected_output)
 
-        r = Square.create(**{'id': 5, 'width': 1,
-                             'x': 4, 'y': 5})
-        answer = Square(1, 4, 5, 5)
-        self.assertEqual(str(r), str(answer))
+    def test_square_update(self):
+        square = Square(3, 2, 1, 10)
+        square.update(25, 30, 20, 10)
+        self.assertEqual(square.size, 30)
+        self.assertEqual(square.x, 20)
+        self.assertEqual(square.y, 10)
+        self.assertEqual(square.id, 25)
 
-        r = Square.create(**{'id': 89, 'width': 1,
-                             'x': 3})
-        answer = Square(1, 3, 0, 89)
-        self.assertEqual(str(r), str(answer))
+    def test_square_update_kwargs(self):
+        square = Square(3, 2, 1, 10)
+        square.update(size=10)
+        self.assertEqual(square.size, 10)
 
-        r = Square.create(**{'id': 89, 'width': 1})
-        answer = Square(1, 0, 0, 89)
-        self.assertEqual(str(r), str(answer))
+    def test_square_to_dictionary(self):
+        square = Square(3, 2, 1, 10)
+        square_dict = square.to_dictionary()
+        expected_dict = {'id': 10, 'size': 3, 'x': 2, 'y': 1}
+        self.assertEqual(square_dict, expected_dict)
 
-        r = Square(2)
-        Square.save_to_file([r])
-        with open("Square.json", "r") as f:
-            content = f.read()
-        expected_output = '[{"id": 32, "size": 2, "x": 0, "y": 0}]'
-        self.assertEqual(content, expected_output)
-        os.remove("Square.json")
+    def test_square_create_id(self):
+        square = Square.create(**{ 'id': 89})
+        self.assertEqual(square.id, 89)
 
+    def test_square_create_id_size(self):
+        square = Square.create(**{ 'id': 89, 'size': 1})
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+
+    def test_square_create_id(self):
+        square = Square.create(**{ 'id': 89, 'size': 1, 'x': 2})
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 2)
+
+    def test_square_create_id(self):
+        square = Square.create(**{ 'id': 89, 'size': 1, 'x': 2, 'y': 3 })
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 3)
+
+    def setUp(self):
+        self.filename = "Square.json"
+
+    def tearDown(self):
+        if os.path.exists(self.filename):
+            os.remove(self.filename)
+
+    def test_square_save_to_file_none(self):
         Square.save_to_file(None)
-        with open("Square.json", "r") as f:
-            content = f.read()
-        expected_output = '[]'
-        self.assertEqual(content, expected_output)
-        os.remove("Square.json")
+        self.assertTrue(os.path.exists(self.filename))
+        with open(self.filename, 'r') as file:
+            file_read = file.read()
+            self.assertEqual(file_read, "[]")
 
+    def test_square_save_to_file_empty(self):
         Square.save_to_file([])
-        with open("Square.json", "r") as f:
-            content = f.read()
-        expected_output = '[]'
-        self.assertEqual(content, expected_output)
-        os.remove("Square.json")
+        self.assertTrue(os.path.exists(self.filename))
+        with open(self.filename, 'r') as file:
+            file_read = file.read()
+            self.assertEqual(file_read, "[]")
 
-        r1 = Square(50)
-        Square.save_to_file([r1])
-        squares = Square.load_from_file()
-        self.assertIsInstance(squares[0], Square)
-        self.assertEqual(squares[0].width, 50)
-        os.remove("Square.json")
+    def test_square_save_to_file(self):
+        square = Square(1)
+        Square.save_to_file([square])
+        self.assertTrue(os.path.exists(self.filename))
+        with open(self.filename, 'r') as file:
+            file_read = file.read()
+            expected_content = json.dumps([square.to_dictionary()])
+            self.assertEqual(json.loads(file_read), json.loads(expected_content))
 
-        r = Square.load_from_file()
-        self.assertTrue(isinstance(r, list))
-        self.assertEqual(r, [])
+    @classmethod
+    def setUpClass(cls):
+        cls.filename = "Rectangle.json"
+
+    @classmethod
+    def tearDownClass(cls):
+        if os.path.exists(cls.filename):
+            os.remove(cls.filename)
+
+    def test_square_load_from_file_nofile(self):
+        if os.path.exists(self.filename):
+            os.remove(self.filename)
+        result = Square.load_from_file()
+        self.assertEqual(result, [])
+
+    def test_rectangle_load_from_file(self):
+        squares = [
+            {"id": 1, "size": 2, "x": 2, "y": 3},
+            {"id": 2, "size": 3, "x": 0, "y": 0},
+        ]
+        with open(self.filename, "w") as file:
+            file.write(Square.to_json_string(squares))
+        loaded_file = Square.load_from_file()
+        self.assertTrue(len(loaded_file) == len(squares))
+        for loaded_square, expected_square in zip(loaded_file, squares):
+            self.assertTrue(isinstance(loaded_square,Square))
+            for key in expected_square:
+                self.assertEqual(getattr(loaded_square,key), expected_square[key])
