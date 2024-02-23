@@ -5,6 +5,9 @@ Il fournit également des méthodes pour initialiser un rectangle, calculer sa s
 l'afficher, le convertir en dictionnaire et mettre à jour ses attributs.
 """
 
+from models.base import Base
+
+
 class Rectangle(Base):
     """Classe Rectangle hérite de class Base"""
 
