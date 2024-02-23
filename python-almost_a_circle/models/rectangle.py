@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-from models.base import Base
-""" Importation du module Base se trouvant dans le dossier models"""
-
+"""
+Ce module définit la classe Rectangle, qui hérite de la classe Base.
+Il fournit également des méthodes pour initialiser un rectangle, calculer sa superficie,
+l'afficher, le convertir en dictionnaire et mettre à jour ses attributs.
+"""
 
 class Rectangle(Base):
     """Classe Rectangle hérite de class Base"""
@@ -124,10 +126,12 @@ class Rectangle(Base):
         """
 
         if args and len(args) > 0:
+            # Si des arguments positionnels sont fournis, les attributs sont assignés dans l'ordre
             attrs = ["id", "width", "height", "x", "y"]
             for i, arg in enumerate(args[:5]):
                 setattr(self, attrs[i], arg)
         elif kwargs and len(kwargs) > 0:
+            # Si des arguments nommés sont fournis, les attributs sont assignés en fonction de leurs noms
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
