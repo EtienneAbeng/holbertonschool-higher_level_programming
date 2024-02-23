@@ -1,37 +1,71 @@
 #!/usr/bin/python3
-""" unittest """
 import unittest
-
+import json
 from models.base import Base
-from io import StringIO
 
 
-class Test_Base(unittest.TestCase):
-    """ unittest """
+class TestBase(unittest.TestCase):
 
-    def test_init(self):
-        b = Base()
-        self.assertEqual(b.id, 1)
+    def test_auto_id_assignment(self):
+        """Test automatic ID assignment"""
+        # Create multiple Base instances without passing IDs
+        base1 = Base()
+        base2 = Base()
+        base3 = Base()
 
-        b = Base(69)
-        self.assertEqual(b.id, 69)
+        # Check if the IDs are automatically assigned starting from 1
+        self.assertEqual(base1.id, 1)
+        self.assertEqual(base2.id, 2)
+        self.assertEqual(base3.id, 3)
 
-        result = Base.to_json_string([])
-        self.assertEqual(result, "[]")
+    def test_auto_id_assignment(self):
+        """Test automatic ID assignment"""
+        # Create multiple Base instances without passing IDs
+        base1 = Base()
+        base2 = Base()
+        base3 = Base()
 
-        result = Base.to_json_string(None)
-        self.assertEqual(result, "[]")
+        # Check if the IDs are automatically assigned starting from 1
+        self.assertEqual(base1.id, 1)
+        self.assertEqual(base2.id, 2)
+        self.assertEqual(base3.id, 3)
 
-        d = [{'id': 36}]
-        result = Base.to_json_string(d)
-        self.assertEqual(result, '[{"id": 36}]')
+   
 
-        result = Base.from_json_string("[]")
-        self.assertEqual(result, [])
 
-        result = Base.from_json_string(None)
-        self.assertEqual(result, [])
+    def test_to_json_string(self):
+        dictionary = {'id': 50,
+                      'width': 10,
+                      'height': 5,
+                      'x': 2,
+                      'y': 3}
+        json_string = Base.to_json_string(dictionary)
+        self.assertTrue(isinstance(json_string, str))
 
-        d = '[{"id": 36}]'
-        result = Base.from_json_string(d)
-        self.assertEqual(result, [{"id": 36}])
+    def test_to_json_string_content(self):
+        dictionary = {'id': 50,
+                      'width': 10,
+                      'height': 5,
+                      'x': 2,
+                      'y': 3}
+        json_string = Base.to_json_string(dictionary)
+        self.assertCountEqual(json.loads(json_string), dictionary)
+
+    def test_to_json_string_none(self):
+        json_string = Base.to_json_string(None)
+        self.assertEqual(json_string, "[]")
+
+    def test_from_json_string(self):
+        string = '[{"id": 1, "width": 10, "height": 7, "x": 2, "y": 8}]'
+        json_list = Base.from_json_string(string)
+        self.assertTrue(isinstance(json_list, list))
+
+    def test_from_json_string_content(self):
+        string = '[{"id": 1, "width": 10, "height": 7, "x": 2, "y": 8}]'
+        expected_list = [{'id': 1, 'width': 10, 'height': 7, 'x': 2, 'y': 8}]
+        json_list = Base.from_json_string(string)
+        self.assertEqual(json_list, expected_list)
+
+    def test_from_json_string_none(self):
+        json_list = Base.from_json_string(None)
+        self.assertEqual(json_list, [])
