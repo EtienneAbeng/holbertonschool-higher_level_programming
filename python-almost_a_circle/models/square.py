@@ -1,6 +1,12 @@
 #!/usr/bin/python3
+"""
+Ce module définit la classe Square, qui hérite de la classe Rectangle.
+Il fournit également des méthodes pour initialiser un carré, calculer sa superficie,
+l'afficher, le convertir en dictionnaire et mettre à jour ses attributs.
+"""
 
 from models.rectangle import Rectangle
+
 
 class Square(Rectangle):
     """Class Square hérite de Rectangle."""
