@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Module base pour la gestion des identifiants uniques des instances.
+"""
 
 import json
 
