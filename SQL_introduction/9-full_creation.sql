@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS second_table(
 );
 
 -- Ajoute des enregistrements à la table second_table
-INSERT INTO hbtn_0c_0.second_table (id, name, score)
+INSERT INTO second_table (id, name, score)
 
 VALUES 
     (1, 'John', 10),    -- Enregistrement avec id=1, name='John' et score=10
