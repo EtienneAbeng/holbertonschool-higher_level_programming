@@ -1,6 +1,6 @@
 -- Crée une nouvelle table de données et ajoute des lignes en entrée
 
-CREATE TABLE IF NOT EXISTS hbtn_0c_0.second_table(
+CREATE TABLE IF NOT EXISTS second_table(
     id INT,  -- Colonne identifiant de l'enregistrement
     name VARCHAR(256),  -- Colonne nom
     score INT  -- Colonne score
