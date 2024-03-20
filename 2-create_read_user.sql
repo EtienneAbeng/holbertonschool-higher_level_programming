@@ -12,3 +12,6 @@ CREATE USER
 GRANT SELECT
     ON hbtn_0d_2.*  -- Accorde le privilège SELECT sur toutes les tables dans la base de données hbtn_0d_2
     TO 'user_0d_2'@'localhost';
+
+-- <FLUSH PRIVILEGES> permet de recharger les privilèges et d'appliquer les modifications des droits.
+FLUSH PRIVILEGES;
