@@ -1,5 +1,14 @@
--- <CREATE> <USER> permet de creer un nouveau utilisateur dans mon locale host
--- <IDENTIFIED BY> permet de creer un mot de password pour le nouveau <USER>
+-- <CREATE> <USER> permet de créer un nouvel utilisateur dans le localhost
+-- <IDENTIFIED BY> permet de créer un mot de passe pour le nouvel <USER>
 CREATE USER 
     IF NOT EXISTS 'user_0d_1'@'localhost' 
     IDENTIFIED BY 'user_0d_1_pwd';
+    
+-- <GRANT> <ALL> <PRIVILEGES> permet d'accorder tous les privilèges à un utilisateur
+-- sur toutes les bases de données
+GRANT ALL PRIVILEGES
+    ON *.*  -- Accorde tous les privilèges sur toutes les bases de données et toutes les tables
+    TO 'user_0d_1'@'localhost'
+
+-- <FLUSH PRIVILEGES> permet de recharger les privilèges et d'appliquer les modifications
+FLUSH PRIVILEGES;
