@@ -6,7 +6,7 @@ CREATE DATABASE
 -- <IDENTIFIED BY> définit un password pour le nouvel utilisateur
 CREATE USER 
     IF NOT EXISTS 'user_0d_2'@'localhost'
-    IDENTIFIED BY 'user_0d_2_pwd'
+    IDENTIFIED BY 'user_0d_2_pwd';
 
 GRANT ALL PRIVILEGES
     ON *.*
