@@ -9,5 +9,5 @@ GRANT ALL PRIVILEGES
     ON *.*  -- Accorde tous les privilèges sur toutes les bases de données et toutes les tables
     TO 'user_0d_1'@'localhost'
 
--- <FLUSH PRIVILEGES> permet de recharger les privilèges et d'appliquer les modifications
+-- <FLUSH PRIVILEGES> permet de recharger les privilèges et d'appliquer les modifications des droits.
 FLUSH PRIVILEGES;
