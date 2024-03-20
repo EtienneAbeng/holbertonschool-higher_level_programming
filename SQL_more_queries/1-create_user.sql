@@ -8,6 +8,3 @@ CREATE USER
 GRANT ALL PRIVILEGES
     ON *.*
     TO 'user_0d_1'@'localhost'
-
--- <FLUSH PRIVILEGES> permet de recharger les privilèges et d'appliquer les modifications des droits
-FLUSH PRIVILEGES;
