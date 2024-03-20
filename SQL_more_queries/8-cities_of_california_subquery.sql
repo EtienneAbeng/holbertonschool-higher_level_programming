@@ -1,9 +1,12 @@
--- <SELECT> Sélectionne toutes les villes de la table cities
-SELECT * FROM cities
--- <WHERE> Filtrer les résultats où l'état de la ville est égal à l'ID de l'état de Californie
+-- lists all the cities of California that can be found.
+SELECT id, name
+FROM cities
+-- <WHERE> Filtrer les villes où l'ID de l'état correspond à celui de la Californie
 WHERE state_id = (
-    -- <SELECT> Sélectionne l'ID de l'état de Californie de la table states
-    SELECT id FROM states WHERE name = 'California'
-)
--- <ORDER BY> Trie les résultats par ordre croissant en fonction de l'ID de la ville
+    -- <SELECT> Sélectionner l'ID de l'état de Californie de la table states
+    SELECT id
+    FROM states
+    -- <WHERE> Filtrer les états où le nom est 'California'
+    WHERE name = 'California')
+-- <ORDER BY> Trier les résultats par ordre croissant en fonction de l'ID de la ville
 ORDER BY id ASC;
