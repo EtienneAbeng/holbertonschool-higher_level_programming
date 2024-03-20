@@ -1,3 +1,4 @@
+-- Active: 1710860491090@@127.0.0.1@3306@hbtn_0d_usa
 -- lists all the cities of California that can be found.
 SELECT id, name
 FROM cities
