@@ -5,7 +5,6 @@ CREATE USER
     IDENTIFIED BY 'user_0d_1_pwd';
     
 -- <GRANT> <ALL> <PRIVILEGES> permet d'accorder tous les privilèges à un utilisateur
--- sur toutes les bases de données
 GRANT ALL PRIVILEGES
     ON *.*  -- Accorde tous les privilèges sur toutes les bases de données et toutes les tables
     TO 'user_0d_1'@'localhost'
