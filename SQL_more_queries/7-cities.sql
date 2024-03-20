@@ -2,6 +2,7 @@
 CREATE DATABASE IF NOT EXISTS hbtn_0d_usa;
 
 -- <CREATE TABLE IF NOT EXISTS> Crée une nouvelle table dans la base de données hbtn_0d_usa si elle n'existe pas déjà
+-- <REFERECE> Permet de dire à la base de données que la colonne d'une table "enfant" est liée à une colonne spécifique d'une autre table "parent". Cela assure que les données dans la colonne "enfant" correspondent toujours à des données valides dans la colonne "parent", garantissant ainsi la cohérence des données.
 CREATE TABLE IF NOT EXISTS hbtn_0d_usa.cities (
     id INT AUTO_INCREMENT UNIQUE,  -- <AUTO_INCREMENT> Crée une colonne id de type INT auto-incrémentée et unique
     state_id INT NOT NULL,  -- Crée une colonne state_id de type INT qui ne peut pas être nulle
