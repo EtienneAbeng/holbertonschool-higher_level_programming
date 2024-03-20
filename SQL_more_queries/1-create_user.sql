@@ -6,5 +6,5 @@ CREATE USER
     
 -- <GRANT> <ALL> <PRIVILEGES> permet d'accorder tous les privilèges à un utilisateur
 GRANT ALL PRIVILEGES
-    ON *.*
-    TO 'user_0d_1'@'localhost'
+    ON *.* -- Accorde tous les privilèges sur toutes les bases de données et toutes les tables
+    TO 'user_0d_1'@'localhost';
