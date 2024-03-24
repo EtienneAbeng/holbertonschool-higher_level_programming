@@ -17,7 +17,7 @@ if __name__ == "__main__":
         port=3306,              # Port MySQL
         user=username,         # Nom d'utilisateur MySQL
         passwd=password,       # Mot de passe MySQL
-        db=db_name,            # Nom de la base de données MySQL
+        db=database,            # Nom de la base de données MySQL
         charset='utf8'         # Encodage UTF-8
     )
 
