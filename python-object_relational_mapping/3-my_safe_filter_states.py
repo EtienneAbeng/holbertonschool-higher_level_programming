@@ -30,10 +30,10 @@ if __name__ == "__main__":
         # Le '%' est un caractère générique qui représente zéro ou plusieurs caractères.
         # Le mot-clé BINARY spécifie que la comparaison des chaînes de caractères doit être sensible à la casse
         # Préparation de la requête SQL avec un paramètre de requête sécurisé
-        sql_query = "SELECT * FROM states WHERE name LIKE BINARY %s ORDER BY id ASC"
+        sql_query = "SELECT * FROM states WHERE name LIKE BINARY %(name)s ORDER BY id ASC"
 
         # Exécution de la requête SQL avec le paramètre sécurisé
-        cursor.execute(sql_query, (state_name + '%',))
+        cursor.execute(sql_query, {'name': state_name + '%'})  # Utilisation du paramètre nommé
 
         # Récupération de tous les résultats de la requête
         results = cursor.fetchall()
