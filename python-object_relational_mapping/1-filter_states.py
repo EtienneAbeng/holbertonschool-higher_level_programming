@@ -1,46 +1,39 @@
 #!/usr/bin/python3
-"""lists all states with a name starting with N (upper N) from the database"""
+"""Ce script liste tous les états de la base de données hbtn_0e_0_usa dont le nom commence par 'N' (upper N)."""
 
-import MySQLdb
-import sys
+import MySQLdb  # Importation du module MySQLdb pour interagir avec la base de données
+import sys  # Importation du module sys pour accéder aux arguments de ligne de commande
 
 if __name__ == "__main__":
-    # Database connection parameters
-    username = sys.argv[1]
-    password = sys.argv[2]
-    db_name = sys.argv[3]
+    # Paramètres de connexion à la base de données
+    username = sys.argv[1]  # Nom d'utilisateur MySQL
+    password = sys.argv[2]  # Mot de passe MySQL
+    database = sys.argv[3]  # Nom de la base de données MySQL
 
-    # Connect to MySQL database
+    # Connexion au serveur MySQL
     db = MySQLdb.connect(
-        host='localhost',
+        host="localhost",
         port=3306,
         user=username,
         passwd=password,
-        db=db_name,
-        charset='utf8'
+        db=database
     )
 
-    # Create a cursor object using cursor() method
+    # Création d'un curseur pour exécuter des requêtes SQL
     cursor = db.cursor()
 
-    # Prepare SQL query to select states starting with 'N'
-    sql_query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+    # Exécution de la requête SQL pour obtenir tous les états commençant par 'N'
+    # LIKE est utilisé pour rechercher des correspondances partielles dans les chaînes de caractères
+    # Le '%' est un caractère générique qui représente zéro ou plusieurs caractères.
+    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
 
-    try:
-        # Execute the SQL command
-        cursor.execute(sql_query)
+    # Récupération de tous les résultats
+    results = cursor.fetchall()
 
-        # Fetch all the rows in a list of tuples
-        results = cursor.fetchall()
+    # Affichage des résultats
+    for row in results:
+        print(row)
 
-        # Print the results
-        for row in results:
-            if 'N' in row[1]:
-                print(row)
-
-    except Exception as e:
-        print("Error:", e)
-
-    finally:
-        # Close the database connection and cursor
-        db.close()
+    # Fermeture du curseur et de la connexion à la base de données
+    cursor.close()
+    db.close()
