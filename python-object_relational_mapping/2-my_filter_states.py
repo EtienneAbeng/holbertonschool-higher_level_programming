@@ -9,7 +9,7 @@ if __name__ == "__main__":
     username = sys.argv[1]    # Nom d'utilisateur MySQL
     password = sys.argv[2]    # Mot de passe MySQL
     database= sys.argv[3]     # Nom de la base de données MySQL
-    state_name = sys.argv[4]  # Nom de l'état recherché
+    
 
     # Connexion à la base de données MySQL
     db = MySQLdb.connect(
