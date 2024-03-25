@@ -23,6 +23,9 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Exécution de la requête SQL pour obtenir tous les états
+    # LIKE est utilisé pour rechercher des correspondances partielles dans les chaînes de caractères
+    # Le '%' est un caractère générique qui représente zéro ou plusieurs caractères.
+    # Le mot-clé BINARY spécifie que la comparaison des chaînes de caractères doit être sensible à la casse
     cursor.execute("SELECT * FROM states WHERE name LIKE NINARY ORDER BY id ASC")
 
     # Récupération de tous les résultats
