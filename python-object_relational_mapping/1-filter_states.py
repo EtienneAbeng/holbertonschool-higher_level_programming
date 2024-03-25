@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # Exécution de la requête SQL pour obtenir tous les états commençant par 'N'
     # LIKE est utilisé pour rechercher des correspondances partielles dans les chaînes de caractères
     # Le '%' est un caractère générique qui représente zéro ou plusieurs caractères.
-    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
+    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
 
     # Récupération de tous les résultats
     results = cursor.fetchall()
