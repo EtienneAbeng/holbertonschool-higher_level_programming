@@ -34,6 +34,6 @@ if __name__ == "__main__":
     for row in results:
         print(row)
 
-    # Fermeture du curseur et de la connexion à la base de données
-    # cursor.close()
-    # db.close()
+    Fermeture du curseur et de la connexion à la base de données
+     cursor.close()
+     db.close()
