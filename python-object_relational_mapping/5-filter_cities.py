@@ -34,6 +34,7 @@ if __name__ == "__main__":
                     "WHERE states.name LIKE BINARY %s ORDER BY cities.id ASC"
 
         # Exécution de la requête SQL avec le paramètre sécurisé
+        # Un tuple de valeurs pour passer les valeurs des paramètres de requête sécurisés pour protège contre les attaques par injection SQL.
         cursor.execute(sql_query, (state_name + '%',))
 
         # Récupération de tous les résultats de la requête
