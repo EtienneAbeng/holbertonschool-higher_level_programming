@@ -26,13 +26,14 @@ if __name__ == "__main__":
         # Création d'un objet curseur pour exécuter des requêtes SQL
         cursor = db.cursor()
 
-        # Execution de la requête SQL pour obtenir tous les états commençant par 'N'
-        # LIKE est utilisé pour rechercher des correspondances partielles dans les chaînes de caractères
-        # Le '%' est un caractère générique qui représente zéro ou plusieurs caractères.
+        # Utilisation d'un INNER JOIN pour combiner les données de deux tables en fonction d'une condition de jointure.
+
         # Le mot-clé BINARY spécifie que la comparaison des chaînes de caractères doit être sensible à la casse
         # Préparation de la requête SQL avec un paramètre de requête sécurisé
 
-        sql_query = "SELECT * FROM cities WHERE id, states, cities ORDER BY id, states, cities ASC"
+        sql_query = "SELECT cities.name, states.name \
+            FROM cities JOIN states ON cities.state_id = states.id \
+            WHERE states.name = '{} ORDER BY cities.id ASC;".format(state_name)
 
          # Exécution de la requête SQL avec le paramètre sécurisé
         cursor.execute(sql_query)
@@ -50,7 +51,8 @@ if __name__ == "__main__":
 
     finally:
         # Fermeture de la connexion à la base de données
-         cursor.close()
-         db.close()
+        if 'db' in locals() and db:
+            db.close()
+
 
 
