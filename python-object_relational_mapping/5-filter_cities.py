@@ -41,8 +41,7 @@ if __name__ == "__main__":
         results = cursor.fetchall()
 
         # Affichage des résultats
-        for row in results:
-            print(row)
+        print("{}".format(", ".join([row[1] for row in results])))
 
     except Exception as e:
         # Gestion des erreurs
