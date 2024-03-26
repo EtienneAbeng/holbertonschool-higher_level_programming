@@ -31,9 +31,10 @@ if __name__ == "__main__":
         # Le mot-clé BINARY spécifie que la comparaison des chaînes de caractères doit être sensible à la casse
         # Préparation de la requête SQL avec un paramètre de requête sécurisé
 
-        sql_query = "SELECT cities.name, cities.id, states.name \
-            FROM cities JOIN states ON cities.state_id = states.id \
-            WHERE states.name LIKE BINARY = '{} ORDER BY cities.id ASC".format(state_name)
+        sql_query = "SELECT cities.id, states.name " \
+            "FROM cities JOIN states ON cities.state_id = states.id " \
+            "WHERE states.name LIKE BINARY '{}%' ORDER BY cities.id ASC".format(state_name)
+
 
          # Exécution de la requête SQL avec le paramètre sécurisé
         cursor.execute(sql_query)
