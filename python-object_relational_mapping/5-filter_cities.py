@@ -51,8 +51,8 @@ if __name__ == "__main__":
 
     finally:
         # Fermeture de la connexion à la base de données
-        if 'db' in locals() and db:
-            db.close()
+         cursor.close()
+         db.close()
 
 
 
