@@ -34,20 +34,28 @@ if __name__ == "__main__":
                     "WHERE states.name LIKE BINARY %s ORDER BY cities.id ASC"
 
         # Exécution de la requête SQL avec le paramètre sécurisé
-        # Un tuple de valeurs pour passer les valeurs des paramètres de requête sécurisés pour protège contre les attaques par injection SQL.
         cursor.execute(sql_query, (state_name + '%',))
 
         # Récupération de tous les résultats de la requête
         results = cursor.fetchall()
 
         # Affichage des résultats
-        print("{}".format(", ".join([row[1] for row in results])))
+        cities = [row[1] for row in results]
+        if cities:
+            print(", ".join(cities))
+        else:
+            print("No cities found:", state_name)
+
+    except MySQLdb.Error as e:
+        # Gestion des erreurs MySQL
+        print("Error:", e)
 
     except Exception as e:
-        # Gestion des erreurs
+        # Gestion des autres erreurs
         print("Error:", e)
 
     finally:
         # Fermeture de la connexion à la base de données
-        cursor.close()
-        db.close()
+        if 'db' in locals() and db:
+            cursor.close()
+            db.close()
