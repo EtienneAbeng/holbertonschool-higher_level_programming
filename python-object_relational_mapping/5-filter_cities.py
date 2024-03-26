@@ -22,7 +22,6 @@ if __name__ == "__main__":
             charset='utf8'         # Encodage UTF-8
         )
 
-
         # Création d'un objet curseur pour exécuter des requêtes SQL
         cursor = db.cursor()
 
@@ -30,14 +29,12 @@ if __name__ == "__main__":
 
         # Le mot-clé BINARY spécifie que la comparaison des chaînes de caractères doit être sensible à la casse
         # Préparation de la requête SQL avec un paramètre de requête sécurisé
-
         sql_query = "SELECT cities.id, states.name " \
-            "FROM cities JOIN states ON cities.state_id = states.id " \
-            "WHERE states.name LIKE BINARY '{}%' ORDER BY cities.id ASC".format(state_name)
+                    "FROM cities JOIN states ON cities.state_id = states.id " \
+                    "WHERE states.name LIKE BINARY %s ORDER BY cities.id ASC"
 
-
-         # Exécution de la requête SQL avec le paramètre sécurisé
-        cursor.execute(sql_query)
+        # Exécution de la requête SQL avec le paramètre sécurisé
+        cursor.execute(sql_query, (state_name + '%',))
 
         # Récupération de tous les résultats de la requête
         results = cursor.fetchall()
@@ -52,8 +49,5 @@ if __name__ == "__main__":
 
     finally:
         # Fermeture de la connexion à la base de données
-         cursor.close()
-         db.close()
-
-
-
+        cursor.close()
+        db.close()
