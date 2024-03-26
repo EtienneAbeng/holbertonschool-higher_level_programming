@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
     except Exception as e:
         # Gestion des erreurs
-        print("Erreur:", e)
+        print("Error:", e)
 
     finally:
         # Fermeture de la connexion à la base de données
