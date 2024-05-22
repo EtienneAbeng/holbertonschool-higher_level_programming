@@ -6,6 +6,6 @@ redHeader.addEventListener('click', function () {
   // Sélectionne l'élément <header>
   const header = document.querySelector('#red_header');
 
-  // Change la couleur du texte de l'élément <header> en rouge (#FF0000)
-  header.style.color = '#FF0000';
+  // Ajoute la classe 'red' à l'élément <header>
+  header.classList.add('red');
 });

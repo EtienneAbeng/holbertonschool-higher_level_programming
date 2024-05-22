@@ -2,4 +2,4 @@
 const header = document.querySelector('header');
 
 // Mettre en rouge le texte du header.
-header.style.color = "red";
+header.style.color = 'red';
